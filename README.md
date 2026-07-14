@@ -23,6 +23,9 @@ BigQuery  olist_raw.*                  (raw layer: faithful copy of source)
       │
       ├──► ml/  BigQuery ML ARIMA_PLUS → 4-week sales forecast per category
       └──► Looker Studio dashboard (KPIs, merchant-vs-peers, actuals + forecast)
+
+dags/olist_pipeline_dag.py   Cloud Composer (Airflow) DAG orchestrating the sequence
+                             above: ingest → dbt build → ML refresh (example, not deployed)
 ```
 
 Orchestration: run manually for the demo; [dags/olist_pipeline_dag.py](dags/olist_pipeline_dag.py) shows the production shape on Cloud Composer (Airflow) — see [Design decisions](#design-decisions).
