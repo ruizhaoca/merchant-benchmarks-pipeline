@@ -1,0 +1,13 @@
+# Copy this file to profiles.yml (in this directory or ~/.dbt/) and set your project ID.
+# Auth: run `gcloud auth application-default login` first.
+merchant_benchmarks:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: YOUR_GCP_PROJECT_ID
+      dataset: analytics
+      location: US
+      threads: 4
+      job_execution_timeout_seconds: 300

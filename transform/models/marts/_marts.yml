@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: mart_merchant_benchmarks
+    description: >
+      Merchant-month KPIs (GMV, orders, AOV, review score, delivery days)
+      benchmarked against the category median. Powers the "you vs. peers"
+      dashboard page.
+    columns:
+      - name: merchant_id
+        tests: [not_null]
+      - name: month_start
+        tests: [not_null]
+      - name: gmv
+        tests: [not_null]
+
+  - name: mart_weekly_category_sales
+    description: Weekly sales per category; training data for the BQML forecast.
+    columns:
+      - name: week_start
+        tests: [not_null]
+      - name: product_category
+        tests: [not_null]
+
+  - name: mart_payment_mix
+    description: Monthly payment-method volume and share.
+    columns:
+      - name: payment_type
+        tests: [not_null]

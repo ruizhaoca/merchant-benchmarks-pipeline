@@ -1,0 +1,16 @@
+name: merchant_benchmarks
+version: "1.0.0"
+profile: merchant_benchmarks
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  merchant_benchmarks:
+    staging:
+      +materialized: view
+    core:
+      +materialized: table
+    marts:
+      +materialized: table

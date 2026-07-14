@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: olist_raw
+    description: >
+      Raw Olist e-commerce tables loaded by ingest/load_olist.py.
+      Column names are preserved exactly as in the source CSVs
+      (including original misspellings); cleanup happens in staging.
+    schema: olist_raw
+    tables:
+      - name: orders
+        description: One row per customer order with lifecycle timestamps.
+      - name: order_items
+        description: One row per item within an order (line-item grain).
+      - name: order_payments
+        description: One row per payment method applied to an order.
+      - name: order_reviews
+        description: Post-delivery customer reviews (1-5 score).
+      - name: products
+        description: Product catalog with category and physical attributes.
+      - name: sellers
+        description: Marketplace sellers — treated as "merchants" downstream.
+      - name: customers
+        description: Order-scoped customer records (customer_unique_id dedupes people).
+      - name: geolocation
+        description: Zip-prefix level lat/lng lookup (not modeled downstream).
+      - name: product_category_translation
+        description: Portuguese to English product category names.

@@ -1,0 +1,27 @@
+# Data files (Kaggle download goes in data/, never commit)
+data/
+*.csv
+*.zip
+
+# dbt
+transform/target/
+transform/dbt_packages/
+transform/logs/
+transform/profiles.yml
+.user.yml
+logs/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Credentials — never commit
+*.json
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/

@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: dim_merchant
+    description: One row per merchant (seller) with location, primary category, and lifetime activity.
+    columns:
+      - name: merchant_id
+        tests: [unique, not_null]
+
+  - name: dim_product
+    description: One row per product with English category name.
+    columns:
+      - name: product_id
+        tests: [unique, not_null]
+
+  - name: dim_date
+    description: Calendar dimension covering the data window.
+    columns:
+      - name: date_day
+        tests: [unique, not_null]
+
+  - name: fct_orders
+    description: Line-item grain sales fact — one row per item sold.
+    columns:
+      - name: order_item_key
+        tests: [unique, not_null]
+      - name: merchant_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_merchant')
+                field: merchant_id
+      - name: product_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: product_id
+
+  - name: fct_payments
+    description: One row per payment leg per order.
+    columns:
+      - name: payment_key
+        tests: [unique, not_null]
+      - name: payment_value
+        tests: [not_null]
